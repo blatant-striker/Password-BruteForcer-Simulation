@@ -1,76 +1,118 @@
-BruteForcer Password Cracking Simulation
-"No System Is Safe"
 
-Overview
-This project demonstrates password cracking using both brute force and dictionary attacks. It simulates the process of guessing weak passwords, highlighting the importance of using strong and unique passwords. The project uses the well-known rockyou.txt dictionary file as part of the dictionary attack method.
+*************Header
+# BruteForcer Password Cracking Simulation
 
-Dictionary Choice
-When prompted for a dictionary file, you should use: rockyou.txt
+> **"No System Is Safe"**
 
-rockyou.txt is a widely used password dictionary compiled from passwords leaked during the 2009 RockYou data breach, where passwords were stored in plain text, a critical security mistake. This incident underscores the need for strong password security measures, including encryption.
+*************Overview
 
-Quick Tip:
-Open rockyou.txt in any text editor.
-Use Ctrl + F to search for your commonly used passwords.
-If you find your password, it’s highly recommended that you change it immediately, as you're at high risk of being hacked.
-Why Strong Passwords Matter
-The RockYou dictionary is infamous for exposing millions of weak passwords, illustrating the dangers of using easily guessable passwords. In response to such breaches, websites and services now enforce stricter password policies to enhance security.
+## Overview
 
-Protect Yourself with Strong Passwords:
-Length: Use at least 12 characters, mixing letters, numbers, and symbols.
-Uniqueness: Avoid common words or patterns.
-Password Managers: Consider using password managers to generate and store strong passwords securely.
-Code Description
-The JavaScript file, bruteforcer.js, simulates password guessing using the following techniques:
+This code simulates password guessing using both brute force and dictionary attacks. It demonstrates how easy it can be to crack weak passwords, especially those found in widely used password dictionaries, such as `rockyou.txt`.
 
-Brute Force Attack: The code attempts every possible combination of characters to guess the password.
-Dictionary Attack: The code can use a password dictionary, such as rockyou.txt, to check if the password matches any word in the dictionary before attempting brute force methods.
-Key Features:
-Brute Force Attempts: The code tries all possible combinations of letters, numbers, and special characters.
-Dictionary Attack: If provided with a dictionary file, the code attempts to find the password by matching it with dictionary entries.
-Total Attempts: The program keeps track of all attempts and logs the number of tries until the password is found (or not found).
-Installation Guide
-Requirements:
-This project is designed to run using Deno, a modern runtime environment for JavaScript and TypeScript. Deno allows file system operations like reading dictionary files without additional dependencies.
+*************Dictionary Choice
 
-Step 1: Install Deno
-To install Deno, follow these instructions based on your operating system:
+### Dictionary Choice
 
-MacOS/Linux:
-bash
-Copy code
-curl -fsSL https://deno.land/x/install/install.sh | sh
-Windows (using PowerShell):
-powershell
-Copy code
-iwr https://deno.land/x/install/install.ps1 -useb | iex
-For more details, visit the official Deno installation guide.
+When prompted for a dictionary file, use: **rockyou.txt**
 
-Step 2: Verify Installation
-After installation, verify that Deno is properly installed by running the following command in your terminal:
+`rockyou.txt` is a popular password dictionary frequently used by security professionals for testing and analysis. It contains millions of passwords leaked from RockYou, a social media company that made the critical error of storing passwords in plain text. This breach, which occurred in 2009, highlights the importance of proper password security practices, including the encryption of passwords.
 
-bash
-Copy code
+*Tip*: Open `rockyou.txt` in any text editor, use `Ctrl + F`, and search for your commonly used passwords. If any of your passwords appear in the file, you are using a common password and are at high risk of being hacked. It is highly recommended that you change such passwords immediately.
+
+*************Why Strong Passwords Matter
+
+### Why Strong Passwords Matter
+
+The RockYou dictionary exposed millions of weak passwords, reinforcing the importance of using **unique, complex passwords** to protect online accounts. To avoid falling victim to password-related breaches:
+
+1. **Use long passwords** that include letters (upper and lowercase), numbers, and special characters.
+2. **Avoid using common words** or phrases.
+3. **Use password managers** to generate and store strong passwords securely.
+
+*************Code Description
+
+### Code Description
+
+The JavaScript code in the file `bruteforcer.js` simulates a password guessing process using two methods:
+
+1. **Brute Force Attack**: The function tries every possible combination of characters, one by one, to guess the password.
+2. **Dictionary Attack**: If a password dictionary (`rockyou.txt` or any other) is provided, the function will attempt to match the password with entries in the dictionary.
+
+*************How It Works
+
+### How It Works:
+
+- The function `guessPassword(password)` accepts a password and attempts to find it using combinations of characters and a dictionary, if provided.
+- It generates possible passwords by trying all combinations of characters (letters, numbers, special symbols) and compares each one to the target password.
+- Additionally, it can load and use a dictionary from a `.txt` file, checking if the password exists in the dictionary before falling back to brute force attempts.
+
+*************Key Sections of the Code
+
+#### Key Sections of the Code:
+
+1. **Brute Force Attempts**: Generates all possible combinations of characters to guess the password.
+2. **Dictionary Check**: Loads a password dictionary and checks if the password is listed.
+3. **Total Attempts**: Keeps track of the number of attempts made to guess the password, providing feedback on performance and success.
+
+*************Installation Guide
+
+## Installation Guide
+
+### Requirements
+
+To run this code, you'll need to use **Deno**, a modern runtime environment for JavaScript and TypeScript. Deno provides a secure, built-in way to handle file system operations without additional dependencies.
+
+### Step 1: Install Deno
+
+1. Open your terminal and install Deno by following the steps below depending on your operating system:
+
+   #### MacOS/Linux:
+   ```bash
+   curl -fsSL https://deno.land/x/install/install.sh | sh
+   ```
+
+   #### Windows (using PowerShell):
+   ```powershell
+   iwr https://deno.land/x/install/install.ps1 -useb | iex
+   ```
+
+   For detailed installation instructions, refer to [Deno's official documentation](https://deno.land/manual/getting_started/installation).
+
+*************Step 2
+
+### Step 2: Verify Deno Installation
+
+Run the following command in your terminal to check if Deno is installed successfully:
+```bash
 deno --version
-Step 3: Running the Code
-Save the JavaScript code in a file named bruteforcer.js.
-Open your terminal and navigate to the directory where bruteforcer.js is saved.
-Run the program using Deno:
-bash
-Copy code
-deno run --allow-read bruteforcer.js
-The --allow-read flag enables file reading permissions, which are necessary for the program to load the dictionary file (rockyou.txt).
+```
 
-Example Usage
-Upon running the script, you'll be prompted to:
+You should see output that shows the version of Deno installed.
 
-Enter a password to be cracked.
-Optionally provide a dictionary file path (e.g., rockyou.txt).
-The program will then attempt to guess the password, first using the dictionary if provided, and then falling back on brute force if necessary.
+*************Step 3
 
-Disclaimer
-This project is for educational purposes only. Password cracking techniques such as brute force and dictionary attacks should only be used in legal, authorized contexts, such as pentesting in environments where you have explicit permission. Unauthorized use of these techniques to access systems or data is illegal and unethical. Always adhere to cybersecurity laws and best practices.
+### Step 3: Running the Code
 
-Author
-BlatantStriker (Chaitanya)
-Feel free to contribute or customize this project further to suit your needs.
+1. Save the code provided in the `bruteforcer.js` file.
+2. In the terminal, navigate to the directory containing `bruteforcer.js`.
+3. Run the code using Deno with the following command:
+   ```bash
+   deno run --allow-read bruteforcer.js
+   ```
+
+   The `--allow-read` flag is required to enable file reading permissions for the script, as it will be loading a dictionary file such as `rockyou.txt`.
+
+*************Disclaimer
+
+## Disclaimer
+
+This project is for **educational purposes only**. The use of password dictionaries and brute force techniques should only be applied in legal, ethical contexts, such as pentesting in environments where you have explicit permission. Misusing these tools for unauthorized access to systems or data is illegal and unethical. Always ensure you adhere to cybersecurity laws and best practices.
+
+*************Author
+
+## Author
+
+- **BlatantStriker (Chaitanya)**
+
+Feel free to make further modifications or add additional functionalities based on your needs.
